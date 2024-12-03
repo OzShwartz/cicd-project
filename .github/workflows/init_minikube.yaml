@@ -1,5 +1,5 @@
 name: Install Kind Cluster on EC2
-run-name: Install Kind on ${{ inputs.EC2_IP }}
+run-name: Install Kind on ${{ inputs.EC2_HOST }}
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
     - name: Install Kind on EC2
       uses: appleboy/ssh-action@v1.2.0
       with:
-        host: ${{ inputs.EC2_IP }}
+        host: ${{ inputs.EC2_HOST }}
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
