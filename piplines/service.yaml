@@ -5,4 +5,11 @@ metadata:
   namespace: pyui
 spec:
   type: NodePort
-  # TODO
+  selector:
+    app: python-app
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 5000
+    nodePort: 30080
