@@ -1,0 +1,34 @@
+name: Install Kind Cluster on EC2
+run-name: Install Kind on EC2
+
+on:
+  workflow_dispatch:
+    # inputs:
+
+
+jobs:
+  install-kind:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Repo
+      # TODO
+
+    - name: Install Kind on EC2
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        # TODO
+        script: |
+          # TODO: yum update
+
+          # Install Docker
+          # TODO
+
+          # Install Kind
+          # TODO
+
+          # Install kubectl
+          # TODO
+
+          # Create a Kind cluster
+          # TODO
