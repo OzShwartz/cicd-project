@@ -1,0 +1,41 @@
+name: Install Kind Cluster on EC2
+run-name: Install Kind on EC2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-kind:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Install Kind on EC2
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+        host: ${{ variables.EC2_HOST }}
+        username: ${{ variables.EC2_USER }} # insert the correct value
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          # Update system packages
+          sudo yum update -y
+
+          # Install Docker
+          sudo yum install -y docker
+          sudo systemctl start docker
+          sudo systemctl enable docker
+
+          # Install Kind
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.20.0/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
+
+          # Install kubectl
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+          # Create a Kind cluster
+          kind create cluster --name ec2-kind-cluster
