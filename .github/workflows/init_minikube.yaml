@@ -4,7 +4,7 @@ run-name: Install Kind on ${{ inputs.EC2_HOST }}
 on:
   workflow_dispatch:
     inputs:
-      EC2_IP:
+      EC2_HOST:
         description: "The IP address of the Kind EC2 instance"
         required: true
 

@@ -2,11 +2,11 @@ name: CI
 run-name: CI
 
 on:
-   push:
-     branches:
-       - Lesson-4
-     paths:
-       - .github/workflows/ci.yaml
+  push:
+    branches:
+      - Lesson-4
+    paths:
+      - .github/workflows/ci.yaml
   workflow_dispatch:
 
 env:
