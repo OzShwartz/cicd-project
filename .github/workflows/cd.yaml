@@ -2,7 +2,7 @@ name: CD
 on:
   workflow_dispatch:
     inputs:
-      EC2_HOSTs:
+      EC2_HOST:
         description: "The IP address of the Kind EC2 instance"
         required: true
 
